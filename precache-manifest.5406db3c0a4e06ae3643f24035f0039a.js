@@ -16,7 +16,7 @@ self.__precacheManifest = [
     "url": "/gomoku/static/js/2.98dcc9dd.chunk.js"
   },
   {
-    "revision": "62925d5bea262ce4754e597707d05908",
+    "revision": "cefc91d10c41bbcd7d45e46f8f53f3eb",
     "url": "/gomoku/index.html"
   }
 ];
