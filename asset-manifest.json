@@ -1,0 +1,13 @@
+{
+  "main.css": "/gomoku/static/css/main.0f8cc7ae.chunk.css",
+  "main.js": "/gomoku/static/js/main.50f296e6.chunk.js",
+  "main.js.map": "/gomoku/static/js/main.50f296e6.chunk.js.map",
+  "runtime~main.js": "/gomoku/static/js/runtime~main.526c671c.js",
+  "runtime~main.js.map": "/gomoku/static/js/runtime~main.526c671c.js.map",
+  "static/js/2.98dcc9dd.chunk.js": "/gomoku/static/js/2.98dcc9dd.chunk.js",
+  "static/js/2.98dcc9dd.chunk.js.map": "/gomoku/static/js/2.98dcc9dd.chunk.js.map",
+  "index.html": "/gomoku/index.html",
+  "precache-manifest.31ff3ea88cc0e44d13dc9376a56f6118.js": "/gomoku/precache-manifest.31ff3ea88cc0e44d13dc9376a56f6118.js",
+  "service-worker.js": "/gomoku/service-worker.js",
+  "static/css/main.0f8cc7ae.chunk.css.map": "/gomoku/static/css/main.0f8cc7ae.chunk.css.map"
+}
