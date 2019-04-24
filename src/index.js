@@ -173,20 +173,52 @@ function findFiveInARow(matrix, row, column) {
   var selected = matrix[row][column];
   var sequence = [];
   var win;
-
+//Horizontal right
   for (var i = 0; i < 5; i++) {
-    if (matrix[0].length < column + 5 || selected != matrix[row][column + i]) {
+    if (0>column-5 || selected != matrix[row][column-i]) {
       sequence = [];
       win = false;
       break;
     }
-    sequence.push(((row + 1) * (column + 1 + i))-1);
+    sequence.push(((row + 1) * (column + 1-i))-1);
     win = true;
   }
-
-  // if (!win) {
-    
-  // }
+//Vertical 
+  if (!win) {
+    for (var i = 0; i < 5; i++) {
+      if (0 > column-5 || selected != matrix[row][column-i]) {
+        sequence = [];
+        win = false;
+        break;
+      }
+      sequence.push(((row+1) * (column+1-i))-1);
+      win = true;
+    }
+  }
+//Diagonal Q13
+  if (!win) {
+    for (var i = 0; i < 5; i++) {
+      if (0 > column-5 || selected != matrix[row][column-i]) {
+        sequence = [];
+        win = false;
+        break;
+      }
+      sequence.push(((row+1) * (column+1-i))-1);
+      win = true;
+    }
+  }
+//Diagonal Q24
+  if (!win) {
+    for (var i = 0; i < 5; i++) {
+      if (0 > column-5 || selected != matrix[row][column-i]) {
+        sequence = [];
+        win = false;
+        break;
+      }
+      sequence.push(((row+1) * (column+1-i))-1);
+      win = true;
+    }
+  }
 
 
   if (win) {
