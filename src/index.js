@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 class Square extends React.Component {
 
@@ -97,15 +98,31 @@ class Game extends React.Component {
 
     const moves = history.map((step, move) => {
       const desc = move ?
-        '#' + move :
+        'Move ' + move :
         // 'Go to move #' + move :
         'Begin';
       // 'Go to game start';
-      return (
-        <li key={move}>
-          <button onClick={() => this.jumpTo(move)}>{desc}</button>
-        </li>
-      )
+
+      if(move){
+        return (
+          <li key={move}>
+            <button className="btn btn-info" onClick={() => this.jumpTo(move)}>{desc}</button>
+          </li>
+        )
+      }else {
+        return (
+          <li key={move}>
+            <button className="btn btn-primary" onClick={() => this.jumpTo(move)}>{desc}</button>
+          </li>
+        )
+      }
+
+      // return (
+      //   <li key={move}>
+      //   <button onClick={() => this.jumpTo(move)}>{desc}</button>
+      // </li>
+      // )
+
     })
 
     let status;
@@ -170,6 +187,7 @@ function calculateWinner(squares) {
 }
 
 function findFiveInARow(matrix, row, column) {
+  var mLength = matrix.length+1;
   var selected = matrix[row][column];
   var sequence = [];
   var win;
@@ -180,7 +198,7 @@ function findFiveInARow(matrix, row, column) {
       win = false;
       break;
     }
-    sequence.push(((row + 1) * (column + 1-i))-1);
+    sequence.push((row*mLength) + (column-i));
     win = true;
   }
 //Vertical 
@@ -191,7 +209,7 @@ function findFiveInARow(matrix, row, column) {
         win = false;
         break;
       }
-      sequence.push(((row+1-i) * (column+1))-1);
+      sequence.push(((row-i)*mLength) + (column));
       win = true;
     }
   }
@@ -203,7 +221,7 @@ function findFiveInARow(matrix, row, column) {
         win = false;
         break;
       }
-      sequence.push(((row+1-i) * (column+1-i))-1);
+      sequence.push(((row+i)*mLength) + (column-i));
       win = true;
     }
   }
@@ -215,17 +233,15 @@ function findFiveInARow(matrix, row, column) {
         win = false;
         break;
       }
-      sequence.push(((row+1) * (column+1-i))-1);
+      sequence.push(((row-i)*mLength) + (column-i));
       win = true;
     }
   }
 
 
   if (win) {
-    console.log(selected);
-    console.log(sequence);
     return {
-      winner: selected,
+      player: selected,
       sequence: sequence
           };
   } else {

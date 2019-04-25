@@ -47,8 +47,30 @@ ol, ul {
 
 .game-info {
   margin-left: 20px;
+  max-height:450px;
+  overflow:auto;
 }
 
 .winningSquare {
   background-color:rgb(181, 231, 181);
 }
+
+
+ol{
+  list-style:none;
+}
+
+ol li{
+  margin-bottom:4px;
+}
+
+
+/* 
+.square {
+  border:none;
+  color:grey;
+}
+
+ol li {
+  display: none;
+} */
