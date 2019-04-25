@@ -1,6 +1,6 @@
 {
   "homepage": "http://andrewrchow.github.io/gomoku",
-  "name": "gomoku",
+  "name": "tic-tac-toe",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

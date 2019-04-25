@@ -175,7 +175,7 @@ function findFiveInARow(matrix, row, column) {
   var win;
 //Horizontal right
   for (var i = 0; i < 5; i++) {
-    if (0>column-5 || selected != matrix[row][column-i]) {
+    if (0>column-4 || selected != matrix[row][column-i]) {
       sequence = [];
       win = false;
       break;
@@ -186,31 +186,31 @@ function findFiveInARow(matrix, row, column) {
 //Vertical 
   if (!win) {
     for (var i = 0; i < 5; i++) {
-      if (0 > column-5 || selected != matrix[row][column-i]) {
+      if (0 > row-4 || selected != matrix[row-i][column]) {
         sequence = [];
         win = false;
         break;
       }
-      sequence.push(((row+1) * (column+1-i))-1);
+      sequence.push(((row+1-i) * (column+1))-1);
       win = true;
     }
   }
 //Diagonal Q13
   if (!win) {
     for (var i = 0; i < 5; i++) {
-      if (0 > column-5 || selected != matrix[row][column-i]) {
+      if (0 > column-4 || matrix.length<row+4 || selected != matrix[row+i][column-i]) {
         sequence = [];
         win = false;
         break;
       }
-      sequence.push(((row+1) * (column+1-i))-1);
+      sequence.push(((row+1-i) * (column+1-i))-1);
       win = true;
     }
   }
 //Diagonal Q24
   if (!win) {
     for (var i = 0; i < 5; i++) {
-      if (0 > column-5 || selected != matrix[row][column-i]) {
+      if (0 > column-4 || 0>row-4 || selected != matrix[row-i][column-i]) {
         sequence = [];
         win = false;
         break;
@@ -223,7 +223,11 @@ function findFiveInARow(matrix, row, column) {
 
   if (win) {
     console.log(selected);
-    return selected;
+    console.log(sequence);
+    return {
+      winner: selected,
+      sequence: sequence
+          };
   } else {
     return "";
   }
