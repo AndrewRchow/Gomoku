@@ -4,18 +4,22 @@ import './index.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 class Square extends React.Component {
-
-
   render() {
     let isWinningSquare = false;
     if (this.props.winSeq) {
       isWinningSquare = elementInArray(this.props.keyProp, this.props.winSeq);
     }
+    const lastSelectedStyle = {
+      backgroundColor: 'lightBlue'
+    }
+    const style = this.props.lastSelected === this.props.keyProp ? lastSelectedStyle : {};
 
     return (
       <button
         className={'square ' + (isWinningSquare ? 'winningSquare' : '')}
-        onClick={() => this.props.onClick()}>
+        onClick={() => this.props.onClick()}
+       style={style}
+        >
         {this.props.value}
       </button>
     );
@@ -28,7 +32,8 @@ class Board extends React.Component {
       key={i} keyProp={i}
       value={this.props.squares[i]}
       onClick={() => this.props.onClick(i)}
-      winSeq={this.props.winSeq} />;
+      winSeq={this.props.winSeq} 
+      lastSelected={this.props.lastSelected}/>;
   }
 
   render() {
@@ -58,12 +63,14 @@ class Game extends React.Component {
       }],
       stepNumber: 0,
       xIsNext: true,
-      isDraw: false
+      isDraw: false,
+      lastSelected: ''
     }
   }
 
   handleClick(i) {
     const history = this.state.history.slice(0, this.state.stepNumber + 1)
+    console.log(history);
     const current = history[history.length - 1];
     const squares = current.squares.slice();
 
@@ -78,7 +85,8 @@ class Game extends React.Component {
       }]),
       stepNumber: history.length,
       xIsNext: !this.state.xIsNext,
-      isDraw: history.length === 225 ? true : false
+      isDraw: history.length === 225 ? true : false,
+      lastSelected: i
     });
   }
 
@@ -91,10 +99,10 @@ class Game extends React.Component {
   }
 
   render() {
-    const history = this.state.history;
+    const {history, isDraw, lastSelected} = this.state;
     const current = history[this.state.stepNumber];
     const winner = calculateWinner(current.squares);
-    const isDraw = this.state.isDraw;
+    
 
     const moves = history.map((step, move) => {
       const desc = move ?
@@ -142,12 +150,14 @@ class Game extends React.Component {
           <Board
             squares={current.squares}
             onClick={(i) => this.handleClick(i)}
-            winSeq={winner.sequence} />
+            winSeq={winner.sequence}
+            lastSelected={lastSelected}
+            />
         </div>
-        <div className="game-info">
+        {/* <div className="game-info">
           <div>{status}</div>
           <ol>{moves}</ol>
-        </div>
+        </div> */}
       </div>
     );
   }
